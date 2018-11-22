@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Narra Quito Map</title>
+        
+        <style type="text/css">
+            /* Set a size for our map container, the Google Map will take up 100% of this container */
+            #map {
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+        
+        <!-- 
+            You need to include this script tag on any page that has a Google Map.
+
+            The following script tag will work when opening this example locally on your computer.
+            But if you use this on a localhost server or a live website you will need to include an API key. 
+            Sign up for one here (it's free for small usage): 
+                https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+
+            After you sign up, use the following script tag with YOUR_GOOGLE_API_KEY replaced with your actual key.
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY"></script>
+        -->
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyBoXKGMHwhiMfdCqGsa6BPBuX43L-2Fwqs"></script>
+  
+        
+        <script type="text/javascript">
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+        
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 15,
+
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(-0.2224947, -78.5124664), 
+
+                    // How you would like to style the map. 
+                    // This is where you would paste any style found on Snazzy Maps.
+                    styles: [{"stylers":[{"hue":"#f6f7fb"},{"saturation":0}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":1000},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]}]
+                };
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+                var dots = [];
+
+                dots.push({
+                    X:-0.2148967,
+                    Y:-78.5025293,
+                    icon:'02.obs.png'
+                });
+                dots.push({
+                    X:-0.2303178,
+                    Y:-78.5192298,
+                    icon:'01.pan.png'
+                });
+                dots.push({
+                    X:-0.2191751,
+                    Y:-78.508865,
+                    icon:'04.teatro-sucre.png'
+                });
+                dots.push({
+                    X:-0.2166436,
+                    Y:-78.5209692,
+                    icon:'05-ronda.png'
+                });
+
+
+                
+                for (var i = 0; i < dots.length; i++) {
+                    d= dots[i];
+                    new google.maps.Marker({
+                        position: new google.maps.LatLng(d.X,d.Y),
+                        map: map,
+                        icon:d.icon
+                    });
+                }
+                    
+                  
+            }
+        </script>
+    </head>
+    <body>
+        <!-- The element that will contain our Google Map. This is used in both the Javascript and CSS above. -->
+        <div id="map"></div>
+    </body>
+</html>
