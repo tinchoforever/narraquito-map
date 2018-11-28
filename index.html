@@ -26,6 +26,114 @@
   
         
         <script type="text/javascript">
+
+            var mapaItems = [
+  {
+    "imagen": "panecillo.png",
+    "latitud": -0.2303178,
+    "longitud": -78.5192298
+  },
+  {
+    "imagen": "observatorio.png",
+    "latitud": -0.2148967,
+    "longitud": -78.5025293
+  },
+  {
+    "imagen": "parque-itchimbia.png",
+    "latitud": -0.222146,
+    "longitud": -78.499077
+  },
+  {
+    "imagen": "plaza-del-teatro.png",
+    "latitud": -0.218459,
+    "longitud": -78.508809
+  },
+  {
+    "imagen": "teatro-sucre.png",
+    "latitud": -0.2191751,
+    "longitud": -78.508865
+  },
+  {
+    "imagen": "centro-de-arte-contemporaneo.png",
+    "latitud": -0.211134,
+    "longitud": -78.506953
+  },
+  {
+    "imagen": "centro-cultural-metropolitano.png",
+    "latitud": -0.220242,
+    "longitud": -78.513187
+  },
+  {
+    "imagen": "fundacion-teatro-bolivar.png",
+    "latitud": -0.221356,
+    "longitud": -78.511164
+  },
+  {
+    "imagen": "museo-de-la-ciudad.png",
+    "latitud": -0.222507,
+    "longitud": -78.51499
+  },
+  {
+    "imagen": "basilica-del-voto-nacional.png",
+    "latitud": -0.214538,
+    "longitud": -78.507436
+  },
+  {
+    "imagen": "iglesia-de-la-compañia.png",
+    "latitud": -0.220103,
+    "longitud": -78.513898
+  },
+  {
+    "imagen": "cementerio-de-san-diego.png",
+    "latitud": -0.22513,
+    "longitud": -78.522388
+  },
+  {
+    "imagen": "parque-cumanda.png",
+    "latitud": -0.227912,
+    "longitud": -78.51148
+  },
+  {
+    "imagen": "colegio-mejia.png",
+    "latitud": -0.212042,
+    "longitud": -78.504903
+  },
+  {
+    "imagen": "mercado-san-roque.png",
+    "latitud": -0.221954,
+    "longitud": -78.522821
+  },
+  {
+    "imagen": "la-ronda.png",
+    "latitud": -0.223885,
+    "longitud": -78.514533
+  },
+  {
+    "imagen": "mama-cuchara.png",
+    "latitud": -0.228508,
+    "longitud": -78.508854
+  },
+  {
+    "imagen": "san-marcos.png",
+    "latitud": -0.224429,
+    "longitud": -78.508222
+  },
+  {
+    "imagen": "plaza-arenas-mercado-arenas-la-guaragua.png",
+    "latitud": -0.216268,
+    "longitud": -78.507174
+  },
+  {
+    "imagen": "la-guaragua.png",
+    "latitud": -0.216642,
+    "longitud": -78.507512
+  },
+  {
+    "imagen": "museo-yaku.png",
+    "latitud": -0.217493,
+    "longitud": -78.518885
+  }
+];
             // When the window has finished loading create our google map below
             google.maps.event.addDomListener(window, 'load', init);
         
@@ -36,7 +144,8 @@
                 var mapOptions = {
                     // How zoomed in you want the map to start at (always required)
                     zoom: 15,
-
+                    maxZoom: 20,
+                    minZoom:15,
                     // The latitude and longitude to center the map (always required)
                     center: new google.maps.LatLng(-0.2224947, -78.5124664), 
 
@@ -53,28 +162,14 @@
                 var map = new google.maps.Map(mapElement, mapOptions);
 
                 var dots = [];
-
-                dots.push({
-                    X:-0.2148967,
-                    Y:-78.5025293,
-                    icon:'02.obs.png'
-                });
-                dots.push({
-                    X:-0.2303178,
-                    Y:-78.5192298,
-                    icon:'01.pan.png'
-                });
-                dots.push({
-                    X:-0.2191751,
-                    Y:-78.508865,
-                    icon:'04.teatro-sucre.png'
-                });
-                dots.push({
-                    X:-0.2166436,
-                    Y:-78.5209692,
-                    icon:'05-ronda.png'
-                });
-
+                for (var i = 0; i < mapaItems.length; i++) {
+                    item = mapaItems[i]
+                    dots.push({
+                        X:item.latitud,
+                        Y:item.longitud,
+                        icon:'imagenes/'+ item.imagen
+                    });
+                }
 
                 
                 for (var i = 0; i < dots.length; i++) {
